@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:todo_app/bloc/Lock/lock_bloc.dart';
+import 'package:todo_app/bloc/todo/bloc/todo_bloc.dart';
 import 'package:todo_app/ui/todo_screen.dart';
 import 'package:todo_app/ui/widgets/buttons.dart';
 import 'package:todo_app/ui/widgets/custom_app_bar.dart';
@@ -34,8 +35,14 @@ class _LockScreenState extends State<LockScreen> {
           popUntilFirstPage(context);
           replace(
               context,
-              TodoScreen(
-                code: _code,
+              BlocProvider(
+                create: (context) => TodoBloc(RepositoryProvider.of(context))
+                  ..add(
+                    LoadTodoListEvent(_code),
+                  ),
+                child: TodoScreen(
+                  code: _code,
+                ),
               ));
         }
       },

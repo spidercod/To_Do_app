@@ -1,19 +1,16 @@
 part of 'todo_bloc.dart';
 
-sealed class TodoEvent extends Equatable {
+abstract class TodoEvent extends Equatable {
   const TodoEvent();
-
-  @override
-  List<Object> get props => [];
 }
 
-//
 class LoadTodoListEvent extends TodoEvent {
   final int code;
+
   const LoadTodoListEvent(this.code);
 
   @override
-  List<Object> get props => [code];
+  List<Object?> get props => [code];
 }
 
 class AddTodoEvent extends TodoEvent {
@@ -24,7 +21,7 @@ class AddTodoEvent extends TodoEvent {
   const AddTodoEvent(this.code, this.task, this.animationIndex);
 
   @override
-  List<Object> get props => [code, task, animationIndex];
+  List<Object?> get props => [code, task, animationIndex];
 }
 
 class MarkDoneEvent extends TodoEvent {
@@ -38,7 +35,7 @@ class MarkDoneEvent extends TodoEvent {
       this.code, this.task, this.time, this.animationIndex, this.statusIndex);
 
   @override
-  List<Object> get props => [code, task, time, animationIndex, statusIndex];
+  List<Object?> get props => [code, task, time, animationIndex, statusIndex];
 }
 
 class DeleteTaskEvent extends TodoEvent {
@@ -48,19 +45,22 @@ class DeleteTaskEvent extends TodoEvent {
   const DeleteTaskEvent(this.code, this.task);
 
   @override
-  List<Object> get props => [code, task];
+  List<Object?> get props => [code, task];
 }
+
+// for when the plus button on the add todo screen clicked
 
 class AnimatedButtonClickedEvent extends TodoEvent {
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 class AnimatedSelectedEvent extends TodoEvent {
   final int index;
 
   const AnimatedSelectedEvent(this.index);
-
   @override
-  List<Object> get props => [index];
+  List<Object?> get props => [index];
 }
+
+// we will need some events that will trigger the todo_repository functions... -> LoadTodoListEvent, AddTodoEvent, MarkDoneEvent, DeleteTaskEvent...

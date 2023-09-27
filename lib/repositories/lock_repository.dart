@@ -1,5 +1,6 @@
 import 'package:hive/hive.dart';
 import 'package:todo_app/models/lock_model.dart';
+import 'package:todo_app/ui/widgets/taost_notification.dart';
 
 class LockRepository {
   late Box<LockModel> _lock;
@@ -18,7 +19,9 @@ class LockRepository {
       return RegisterResponse.alreadyExists;
     }
     try {
-      _lock.add(LockModel(code));
+      _lock
+          .add(LockModel(code))
+          .whenComplete(() => showTaost('Registred as $code!'));
       return RegisterResponse.success;
     } on Exception catch (e) {
       return RegisterResponse.failure;
@@ -29,6 +32,7 @@ class LockRepository {
   Future<int?> authenticate(final int code) async {
     final success = await _lock.values.any((element) => element.code == code);
     if (success) {
+      showTaost('Log-in as $code!');
       return code;
     } else {
       return null;
