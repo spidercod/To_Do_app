@@ -19,6 +19,9 @@ class AddTodoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateTime now = DateTime.now();
+    int hour = now.hour;
+    int minute = now.minute;
     return BlocConsumer<TodoBloc, TodoState>(
       listener: (context, state) {
         if (state is PopState) {
@@ -133,6 +136,30 @@ class AddTodoScreen extends StatelessWidget {
                         style: style(context).copyWith(
                             fontWeight: FontWeight.w500,
                             fontSize: kPad(context) * 0.06),
+                      ),
+                      SizedBox(
+                        height: kPad(context) * .01,
+                      ),
+                      Text(
+                        'Task Time',
+                        style: style(context)
+                            .copyWith(fontWeight: FontWeight.w500, color: blue),
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            '${hour.toString()}:',
+                            style: style(context).copyWith(
+                                fontWeight: FontWeight.w500,
+                                fontSize: kPad(context) * 0.06),
+                          ),
+                          Text(
+                            minute.toString(),
+                            style: style(context).copyWith(
+                                fontWeight: FontWeight.w500,
+                                fontSize: kPad(context) * 0.06),
+                          ),
+                        ],
                       ),
                       SizedBox(
                         height: kPad(context) * .01,

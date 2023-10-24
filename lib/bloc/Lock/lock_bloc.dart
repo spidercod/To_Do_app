@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:todo_app/repositories/lock_repository.dart';
 import 'package:todo_app/repositories/todo_repository.dart';
 
@@ -17,7 +18,7 @@ class LockBloc extends Bloc<LockEvent, LockState> {
         await _lockRepository.init();
         await _todoRepository.init();
       } on Exception catch (e) {
-        print(e.toString());
+        debugPrint('lock-bloc error : $e');
       }
       emit(LockInitial());
     });

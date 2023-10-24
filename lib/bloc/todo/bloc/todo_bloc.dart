@@ -8,6 +8,7 @@ part 'todo_state.dart';
 
 class TodoBloc extends Bloc<TodoEvent, TodoState> {
   final TodoRepository _todoRepository;
+
   TodoBloc(this._todoRepository) : super(const TodoInitial(0)) {
     // add todo bloc...
     on<AddTodoEvent>((event, emit) async {

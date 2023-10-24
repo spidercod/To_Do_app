@@ -12,10 +12,11 @@ class TodoRepository {
   }
 
   //to get the todolist according t the codee
-  List<TodoMOdel> getTodos(final int code) {
+  List<TodoMOdel> getTodos(final int code) { 
     final todos = _todo.values.where((element) => element.code == code);
     return todos.toList();
   }
+
 
 //to add the task to the list according to the respective code...
   void addTodos(final int code, final int animationIndex, final String task,

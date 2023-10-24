@@ -12,35 +12,36 @@ Widget customAppBar(
   return Container(
     height: kPad(context) * 0.25,
     width: kPad(context),
-    decoration: BoxDecoration(),
+    decoration: const BoxDecoration(),
     child: Center(
       child: SafeArea(
-          child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          IconButton(
-            onPressed: firstIconFunction,
-            icon: Icon(
-              firstIcon,
-              color: dark.withOpacity(0.5),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            IconButton(
+              onPressed: firstIconFunction,
+              icon: Icon(
+                firstIcon,
+                color: dark.withOpacity(0.5),
+              ),
             ),
-          ),
-          Text(
-            title,
-            style: style(context).copyWith(
-              fontSize: kPad(context) * 0.04,
-              fontWeight: FontWeight.w400,
+            Text(
+              title,
+              style: style(context).copyWith(
+                fontSize: kPad(context) * 0.04,
+                fontWeight: FontWeight.w400,
+              ),
             ),
-          ),
-          IconButton(
-            onPressed: secondIconFunction,
-            icon: Icon(
-              secondIocn,
-              color: dark.withOpacity(0.5),
+            IconButton(
+              onPressed: secondIconFunction,
+              icon: Icon(
+                secondIocn,
+                color: dark.withOpacity(0.5),
+              ),
             ),
-          ),
-        ],
-      )),
+          ],
+        ),
+      ),
     ),
   );
 }

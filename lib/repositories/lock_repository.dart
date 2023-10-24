@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:todo_app/models/lock_model.dart';
 import 'package:todo_app/ui/widgets/taost_notification.dart';
@@ -24,6 +25,7 @@ class LockRepository {
           .whenComplete(() => showTaost('Registred as $code!'));
       return RegisterResponse.success;
     } on Exception catch (e) {
+      debugPrint('error $e');
       return RegisterResponse.failure;
     }
   }
